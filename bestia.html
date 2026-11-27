@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escucha a la bestia · El Despertar</title>
+<meta name="description" content="Cada sismo del planeta, en tiempo real, como el despertar de una bestia. Proyecto de visualización de datos de Luis Eduardo Serrano Sorto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;900&family=Jost:ital,wght@0,300..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css?v=1795810000">
+</head>
+<body data-vista="bestia">
+
+<!-- Barra de navegación y estado en vivo -->
+<header class="barra">
+  <a class="marca" href="index.html">El Despertar</a>
+  <nav class="nav">
+    <a href="index.html" data-v="editorial"><span>01</span> La tierra no duerme</a>
+    <a href="bestia.html" data-v="bestia" class="activa" aria-current="page"><span>02</span> Escucha a la bestia</a>
+    <a href="reflexion.html" data-v="reflexion"><span>03</span> Reflexión</a>
+  </nav>
+  <div class="vivo" id="estado"><i></i><span>conectando con USGS…</span></div>
+</header>
+
+
+<main id="bestia" class="vista vista-bestia">
+  <canvas id="lienzo" aria-hidden="true"></canvas>
+  <div class="grano" aria-hidden="true"></div>
+
+  <!-- Entrada: aviso ético y ritual -->
+  <div class="entrada-bestia" id="entrada">
+    <div class="entrada-caja">
+      <p class="ceja">02 · Escucha a la bestia</p>
+      <h2 class="titulo-l">La bestia está dormida.</h2>
+      <p class="cuerpo">Cada sismo real que ocurra en el planeta mientras estés aquí la despertará con un sonido grave. Lo que escuches está pasando ahora, en algún lugar del mundo.</p>
+      <p class="aviso"><b>Aviso.</b> Esta experiencia usa sonidos graves e intensos que evocan un sismo. Si viviste un sismo fuerte y te resulta difícil, puedes entrar sin sonido o salir en cualquier momento.</p>
+      <p class="nota">Usa audífonos o bocinas con buenos graves.</p>
+      <div class="entrada-botones">
+        <button class="boton" id="despertar">Despertar a la bestia</button>
+        <button class="boton boton-sec" id="sin-sonido">Entrar sin sonido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Capa de lectura del sismo -->
+  <div class="lectura" id="lectura" aria-live="polite">
+    <p class="lectura-mag" id="l-mag"></p>
+    <p class="lectura-lugar" id="l-lugar"></p>
+    <p class="lectura-hora" id="l-hora"></p>
+  </div>
+
+  <div class="respira" id="respira">
+    <p class="rotulo">La bestia respira</p>
+    <p class="respira-dato"><span id="r-hora">—</span> avistamientos en la última hora</p>
+  </div>
+
+  <!-- Provocar un sismo -->
+  <aside class="provocar" id="provocar" aria-label="Provocar un sismo">
+    <p class="rotulo">Provoca un sismo</p>
+    <p class="prov-mag" id="p-mag">M 6.0</p>
+    <p class="prov-etapa" id="p-etapa">Se levanta</p>
+    <div class="prov-riel">
+      <input type="range" id="p-rango" min="1" max="15" step="0.1" value="6" aria-label="Magnitud">
+      <ol class="prov-marcas" aria-hidden="true">
+        <li style="--p:0">1</li><li style="--p:.321">5.5</li><li style="--p:.5">8</li><li class="record" style="--p:.607">9.5 · récord</li><li style="--p:.786">12</li><li style="--p:1">15</li>
+      </ol>
+    </div>
+    <select id="p-lugar" aria-label="Lugar">
+      <option value="michoacan">Costa de Michoacán</option><option value="cdmx">Ciudad de México</option><option value="japon">Costa de Japón</option>
+      <option value="chile">Sur de Chile</option><option value="california">California</option><option value="indonesia">Sumatra, Indonesia</option>
+    </select>
+    <button id="p-provocar" class="prov-boton">Provocar</button>
+    <p class="prov-nota">Más allá de 9.5, es ficción.</p>
+  </aside>
+
+  <!-- Controles -->
+  <div class="controles">
+    <div class="pasado">
+      <p class="rotulo">Revivir el pasado · 19 de septiembre</p>
+      <div class="pasado-botones">
+        <button data-19="1985">1985</button><button data-19="2017">2017</button><button data-19="2022">2022</button>
+      </div>
+    </div>
+    <div class="pasado repaso">
+      <p class="rotulo">Las últimas 24 horas · <span id="repaso-cuenta">—</span> avistamientos</p>
+      <div class="pasado-botones">
+        <button id="repaso">Reproducir 24 h</button>
+      </div>
+      <div class="repaso-barra" aria-hidden="true"><i id="repaso-avance"></i></div>
+    </div>
+    <div class="volumen">
+      <button id="silencio" aria-label="Silenciar">Sonido: sí</button>
+      <label class="rotulo" for="vol">Volumen</label>
+      <input type="range" id="vol" min="0" max="100" value="70">
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script src="js/main.js?v=1795810000"></script>
+</body>
+</html>

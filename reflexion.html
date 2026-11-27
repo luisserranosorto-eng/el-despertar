@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reflexión final · El Despertar</title>
+<meta name="description" content="Cada sismo del planeta, en tiempo real, como el despertar de una bestia. Proyecto de visualización de datos de Luis Eduardo Serrano Sorto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;900&family=Jost:ital,wght@0,300..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css?v=1795810000">
+</head>
+<body data-vista="reflexion">
+
+<!-- Barra de navegación y estado en vivo -->
+<header class="barra">
+  <a class="marca" href="index.html">El Despertar</a>
+  <nav class="nav">
+    <a href="index.html" data-v="editorial"><span>01</span> La tierra no duerme</a>
+    <a href="bestia.html" data-v="bestia"><span>02</span> Escucha a la bestia</a>
+    <a href="reflexion.html" data-v="reflexion" class="activa" aria-current="page"><span>03</span> Reflexión</a>
+  </nav>
+  <div class="vivo" id="estado"><i></i><span>conectando con USGS…</span></div>
+</header>
+
+
+<main id="reflexion" class="vista">
+  <section class="portada portada-niebla reflexion" data-titulo="" data-rojo="1.5">
+    <canvas class="p-cielo" aria-hidden="true"></canvas>
+    <canvas class="p-titulo" aria-hidden="true"></canvas>
+    <canvas class="p-frente" aria-hidden="true"></canvas>
+    <h1 class="oculto">Reflexión final</h1>
+    <div class="r-caja">
+      <p class="r-texto">Bajo cada ciudad, bajo cada casa, algo se mueve aunque no lo veamos. La bestia fue la forma de darle cuerpo a eso que vive debajo de todos nosotros. Cada avistamiento de este sitio ocurrió de verdad: detrás de cada punto rojo hay una familia y una noche que no terminó igual. Esta bestia no predice nada; solo escucha. Tal vez así podamos acercarnos a quienes, del otro lado del mundo, sienten este despertar, y empaticemos con lo que están experimentando. Porque la bestia no tiene fronteras, y la próxima vez puede despertar bajo nosotros.</p>
+    </div>
+  </section>
+</main>
+
+<script src="js/main.js?v=1795810000"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Despertar · Sismicidad en México y el mundo</title>
+<meta name="description" content="Cada sismo del planeta, en tiempo real, como el despertar de una bestia. Proyecto de visualización de datos de Luis Eduardo Serrano Sorto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;900&family=Jost:ital,wght@0,300..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css?v=1795810000">
+</head>
+<body data-vista="editorial">
+
+<!-- Barra de navegación y estado en vivo -->
+<header class="barra">
+  <a class="marca" href="index.html">El Despertar</a>
+  <nav class="nav">
+    <a href="index.html" data-v="editorial" class="activa" aria-current="page"><span>01</span> La tierra no duerme</a>
+    <a href="bestia.html" data-v="bestia"><span>02</span> Escucha a la bestia</a>
+    <a href="reflexion.html" data-v="reflexion"><span>03</span> Reflexión</a>
+  </nav>
+  <div class="vivo" id="estado"><i></i><span>conectando con USGS…</span></div>
+</header>
+
+
+<main id="editorial" class="vista">
+
+  <section class="portada portada-niebla">
+    <canvas class="p-cielo" aria-hidden="true"></canvas>
+    <canvas class="p-titulo" aria-hidden="true"></canvas>
+    <canvas class="p-frente" aria-hidden="true"></canvas>
+    <h1 class="oculto">El Despertar</h1>
+    <p class="p-intro">La tierra nunca duerme del todo. Cada día se registran cientos de sismos en el planeta. Tú no sientes la mayoría, pero cientos de familias están siendo víctimas de <b>El Despertar</b>. Este sitio lo escucha en tiempo real: una bestia que vive debajo de todos nosotros.</p>
+    <p class="p-pie">Sismicidad en México y el mundo<br>En vivo · USGS</p>
+    <div class="p-dato">
+      <p class="p-cifra" data-dato="total24">—</p>
+      <p class="p-nota">avistamientos en 24 h</p>
+      <p class="ultimo" id="ultimo">Esperando el último avistamiento…</p>
+      <a class="p-ver" href="bestia.html">Escucha a la bestia ↗</a>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/main.js?v=1795810000"></script>
+</body>
+</html>
