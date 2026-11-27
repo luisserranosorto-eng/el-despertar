@@ -26,6 +26,7 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
 /* ---------------------------------------------------------------------
    DATOS EN VIVO · USGS
    --------------------------------------------------------------------- */
+try {
 /* =========================================================
    DATOS EN VIVO · USGS Earthquake Catalog (GeoJSON)
    - all_day: se consulta cada minuto (los sismos nuevos despiertan a la bestia)
@@ -114,9 +115,12 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
     on(evento, fn){ (escuchas[evento] = escuchas[evento] || []).push(fn); } };
 })();
 
+} catch (e) { console.error(e); }   // un error aquí no detiene lo demás
+
 /* ---------------------------------------------------------------------
    PORTADA Y NIEBLA
    --------------------------------------------------------------------- */
+try {
 /* =========================================================
    PORTADA · EL DESPERTAR
    Igual a la imagen aprobada: cielo oscuro, niebla azul verdosa en el
@@ -159,6 +163,8 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
   function preparar(){
     const r = sec.getBoundingClientRect();
     dpr = Math.min(window.devicePixelRatio || 1, 2); W = r.width; H = r.height;
+    if (!W || !H){ listo = false; setTimeout(preparar, 250); return; }   // la pestaña aún no tiene tamaño
+    listo = true;
     HORIZONTE = W < 860 ? .4 : (parseFloat(sec.dataset.horizonte) || .615);
     const rojo = parseFloat(sec.dataset.rojo) || 0;               // cuánto rojo se mezcla en la luz del horizonte
     sec.style.setProperty('--hz', (HORIZONTE * 100) + '%');
@@ -203,6 +209,7 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
 
   // el título (igual a la imagen): Anton, interletrado amplio, rastro sutil a la derecha, corte en el horizonte
   function dibujarTitulo(){
+    if (!W || !H) return;
     const x = xT; x.setTransform(1, 0, 0, 1, 0, 0); x.clearRect(0, 0, cTitulo.width, cTitulo.height); x.scale(dpr, dpr);
     const texto = sec.dataset.titulo !== undefined ? sec.dataset.titulo : 'EL DESPERTAR', base = H * HORIZONTE - 2;
     if (!texto) return;                                          // páginas con niebla pero sin título
@@ -233,8 +240,10 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
   }
 
   let ultimoGrano = 0, granoActual = 0;
+  let listo = false;
   function cuadro(ms){
     if (!visible){ raf = 0; return; }
+    if (!listo){ raf = requestAnimationFrame(cuadro); return; }
     const t = ms / 1000;
     // cielo + niebla que avanza + tierra
     xC.setTransform(1, 0, 0, 1, 0, 0); xC.drawImage(cielo, 0, 0); xC.scale(dpr, dpr);
@@ -260,9 +269,12 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
   raf = requestAnimationFrame(cuadro);
 })();
 
+} catch (e) { console.error(e); }   // un error aquí no detiene lo demás
+
 /* ---------------------------------------------------------------------
    CIFRAS EN VIVO
    --------------------------------------------------------------------- */
+try {
 /* =========================================================
    PANTALLA 1 · EDITORIAL DE DATOS (en vivo)
    ========================================================= */
@@ -389,9 +401,12 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
   };
 })();
 
+} catch (e) { console.error(e); }   // un error aquí no detiene lo demás
+
 /* ---------------------------------------------------------------------
    LA BESTIA EN 3D
    --------------------------------------------------------------------- */
+try {
 /* =========================================================
    LA BESTIA EN 3D (three.js) · solo aparece cuando la tierra ruge (M > 5.5)
    Una criatura de roca original: cabeza baja y maciza, fauces de piedra,
@@ -623,9 +638,12 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
   window.Bestia3D = { dibujar };
 })();
 
+} catch (e) { console.error(e); }   // un error aquí no detiene lo demás
+
 /* ---------------------------------------------------------------------
    ESCUCHA A LA BESTIA
    --------------------------------------------------------------------- */
+try {
 /* =========================================================
    PANTALLA 2 · ESCUCHA A LA BESTIA
    Cada sismo real despierta a la bestia:
@@ -1649,9 +1667,12 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
   };
 })();
 
+} catch (e) { console.error(e); }   // un error aquí no detiene lo demás
+
 /* ---------------------------------------------------------------------
    ARRANQUE DE CADA PÁGINA
    --------------------------------------------------------------------- */
+try {
 /* =========================================================
    CADA PÁGINA · estado en vivo y arranque
    Los datos se conectan desde que se abre cualquier página
@@ -1677,10 +1698,13 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
   D.iniciar();
 })();
 
+} catch (e) { console.error(e); }   // un error aquí no detiene lo demás
+
 /* ---------------------------------------------------------------------
    REFLEXIÓN · el texto se escribe solo, letra por letra, sin prisa
    Las letras ya ocupan su lugar (invisibles), así el texto no salta.
    --------------------------------------------------------------------- */
+try {
 (function(){
   const p = document.querySelector('.r-texto'); if (!p) return;
   const texto = p.textContent;
@@ -1703,3 +1727,5 @@ window.PAISES={"W":360,"H":136,"step":1,"lon0":-180,"lat1":78,"nombres":["Zimbab
   }
   setTimeout(escribir, 1200);   // primero aparece la niebla
 })();
+
+} catch (e) { console.error(e); }   // un error aquí no detiene lo demás
